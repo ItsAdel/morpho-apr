@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test:morpho": "ts-node src/scripts/testMorpho.ts",
+    "migrate:fresh": "psql -d gondor -f migrations/002_restructure_schema.sql",
+    "migrate:vaults": "psql -d gondor -f migrations/003_add_vault_borrowers.sql",
+    "migrate:vault-supply": "psql -d gondor -f migrations/004_vault_supply_tracking.sql",
+    "migrate:loan-assets": "psql -d gondor -f migrations/005_add_loan_asset_tracking.sql",
+    "seed:morpho": "ts-node src/scripts/seedFromMorpho.ts",
+    "sync:borrowers": "ts-node src/scripts/syncRealBorrowers.ts",
+    "cleanup:db": "ts-node src/scripts/cleanupDatabase.ts",
+    "daily:interest": "ts-node src/scripts/runDailyInterest.ts",
+    "process:reimbursements": "ts-node src/scripts/processReimbursements.ts",
+    "test:cap-update": "ts-node src/scripts/testCapUpdate.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.9.0",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "@types/node-cron": "^3.0.11",
+    "@types/pg": "^8.10.9",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}

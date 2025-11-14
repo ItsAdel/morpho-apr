@@ -1,0 +1,28 @@
+// Define markets first
+const MARKETS = {
+  WSTETH_WETH:
+    "0xb8ae474af3b91c8143303723618b31683b52e9c86566aa54c06f0bc27906bcae",
+  WBTC_USDC:
+    "0x1cfe584af3db05c7f39d60e458a87a8b2f6b5d8c6125631984ec489f1d13553b",
+  WPOL_USDC:
+    "0x7506b33817b57f686e37b87b5d4c5c93fdef4cffd21bbf9291f18b2f29ab0550",
+};
+
+export const MORPHO_CONFIG = {
+  POLYGON_RPC: process.env.POLYGON_RPC_URL || "https://polygon-rpc.com",
+
+  VAULTS: {
+    COMPOUND_WETH: "0xF5C81d25ee174d83f1FD202cA94AE6070d073cCF",
+    COMPOUND_USDT: "0xfD06859A671C21497a2EB8C5E3fEA48De924D6c8",
+    STEAKHOUSE_USDC: "0xAcB0DCe4b0FF400AD8F6917f3ca13E434C9ed6bC",
+  },
+
+  MARKETS: MARKETS,
+
+  // APR caps per market (in decimal, e.g., 0.12 = 12%)
+  APR_CAPS: {
+    [MARKETS.WSTETH_WETH]: 0.12,
+    [MARKETS.WBTC_USDC]: 0.1,
+    [MARKETS.WPOL_USDC]: 0.15,
+  },
+};
